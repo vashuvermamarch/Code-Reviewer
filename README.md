@@ -20,7 +20,6 @@ Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v16.x or higher)
 - [npm](https://www.npmjs.com/) (usually comes with Node.js)
 - A valid **Groq API Key** (Get it at [console.groq.com](https://console.groq.com/))
-- A valid **Google Gemini API Key** (Get it at [aistudio.google.com](https://aistudio.google.com/))
 
 ---
 
@@ -49,7 +48,6 @@ Create a `.env` file inside the `BackEnd` directory:
 ```bash
 # BackEnd/.env
 GROQ_API_KEY=your_groq_key_here
-GOOGLE_GEMINI_KEY=your_gemini_key_here
 ```
 
 ---
