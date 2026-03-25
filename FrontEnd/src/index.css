@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dracula-bg: var(--bg-color);
+  --color-dracula-current: var(--current-color);
+  --color-dracula-fg: var(--fg-color);
+  --color-dracula-comment: var(--comment-color);
+  --color-dracula-cyan: #8be9fd;
+  --color-dracula-green: #50fa7b;
+  --color-dracula-orange: #ffb86c;
+  --color-dracula-pink: #ff79c6;
+  --color-dracula-purple: #bd93f9;
+  --color-dracula-red: #ff5555;
+  --color-dracula-yellow: #f1fa8c;
+}
+
+:root {
+  --bg-color: #282a36;
+  --fg-color: #f8f8f2;
+  --current-color: #44475a;
+  --comment-color: #6272a4;
+  --glass-bg: rgba(40, 42, 54, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --terminal-color: #50fa7b;
+  --terminal-shadow: rgba(80, 250, 123, 0.5);
+}
+
+.light-theme {
+  --bg-color: #f8f9fa;
+  --fg-color: #2d3436;
+  --current-color: #e9ecef;
+  --comment-color: #636e72;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --terminal-color: #2d3436; /* Darker text for light mode terminal */
+  --terminal-shadow: rgba(0, 0, 0, 0.1);
+  
+  --color-dracula-purple: #6c5ce7;
+  --color-dracula-green: #27ae60;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  transition: background 0.3s ease;
+}
+
+.glass-light {
+  background: rgba(68, 71, 90, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-nav {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid var(--glass-border);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(80, 250, 123, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(80, 250, 123, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(80, 250, 123, 0); }
+}
+
+.btn-pulse {
+  animation: pulse 2s infinite;
+}
+
+.retro-terminal {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--terminal-color);
+  text-shadow: 0 0 5px var(--terminal-shadow);
+  transition: color 0.3s ease;
+}
+
+.retro-terminal-error {
+  color: #ff5555;
+  text-shadow: 0 0 5px rgba(255, 85, 85, 0.5);
+}
