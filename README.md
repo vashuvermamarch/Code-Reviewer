@@ -77,6 +77,24 @@ The IDE will be available at: **http://localhost:5173**
 
 ---
 
+## 🚀 Deployment (Render)
+
+The project is optimized for a single-service deployment on **Render**.
+
+### **Service Configuration**
+- **Service Type**: Web Service
+- **Runtime**: Node
+- **Build Command**: `npm run render-build` 
+- **Start Command**: `npm start`
+
+### **Environment Variables**
+Ensure you set these in the Render Dashboard:
+- `GROQ_API_KEY`: Your Groq API key.
+- `VITE_API_URL`: The URL of your rendered app (e.g., `https://your-app.onrender.com`).
+- `NODE_VERSION`: `18.16.0` (Recommended).
+
+---
+
 ## 📂 Project Structure
 
 - `FrontEnd/`: React + Vite + Tailwind CSS v4 application.

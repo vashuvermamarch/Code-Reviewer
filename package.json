@@ -1,0 +1,10 @@
+{
+  "name": "code-reviewer-ide",
+  "version": "1.0.0",
+  "scripts": {
+    "install-all": "npm install && cd BackEnd && npm install && cd ../FrontEnd && npm install",
+    "build": "cd FrontEnd && npm run build",
+    "start": "cd BackEnd && npm start",
+    "render-build": "npm install && cd FrontEnd && npm install && npm run build && cd ../BackEnd && npm install"
+  }
+}

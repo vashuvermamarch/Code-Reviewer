@@ -1,23 +1,30 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const aiRoutes = require('./routes/ai.routes');
 const app = express();
 
 app.use(cors());
-
-// 1. Middleware to parse JSON bodies (Crucial for Postman)
 app.use(express.json());
-
-// 2. Middleware to parse URL-encoded bodies (Optional but recommended)
 app.use(express.urlencoded({ extended: true }));
 
-// 3. Health check route
-app.get('/', (req, res) => {
-    res.send('Hello, the Code Reviewer API is active!');
-});
-
-// 4. Use the AI routes
-// This prefix means your URL will be: http://localhost:3000/ai/get-review
+// Serve API routes
 app.use('/ai', aiRoutes);
+
+// --- PRODUCTION SETUP: Serve Static Frontend ---
+// This handles cases where the project is deployed as a single service
+const frontendPath = path.join(__dirname, '../../FrontEnd/dist');
+app.use(express.static(frontendPath));
+
+// Health check and SPA routing
+app.get('*', (req, res) => {
+    // If it is index route or any other unknown route, serve the frontend
+    if (req.path.startsWith('/ai')) return; 
+    res.sendFile(path.join(frontendPath, 'index.html'), (err) => {
+        if (err) {
+            res.status(200).send('API is active. Frontend build not found.');
+        }
+    });
+});
 
 module.exports = app;
