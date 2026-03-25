@@ -37,7 +37,8 @@ console.log("The sum is:", result);`);
     setLogs(prev => [...prev, { type: 'info', text: 'Analyzing code...', time: new Date().toLocaleTimeString() }]);
     
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      // Use relative path in production, or localhost in development
+      const apiUrl = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:3000');
       const response = await fetch(`${apiUrl}/ai/get-review`, {
         method: 'POST',
         headers: {
