@@ -16,10 +16,13 @@ app.use('/ai', aiRoutes);
 const frontendPath = path.join(__dirname, '../../FrontEnd/dist');
 app.use(express.static(frontendPath));
 
-// Health check and SPA routing
-app.get('*', (req, res) => {
-    // If it is index route or any other unknown route, serve the frontend
-    if (req.path.startsWith('/ai')) return; 
+// 4. Fallback: Serve Frontend for all other routes
+app.use((req, res) => {
+    // If the request is for an API route that doesn't exist, don't serve index.html
+    if (req.path.startsWith('/ai')) {
+        return res.status(404).json({ error: 'API route not found' });
+    }
+    
     res.sendFile(path.join(frontendPath, 'index.html'), (err) => {
         if (err) {
             res.status(200).send('API is active. Frontend build not found.');
